@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from sqlalchemy import create_engine, text
-import os
 
 app = Flask(__name__)
 app.secret_key = 'retail2024'
 
-DB_URL = 'postgresql://postgres:retail2024!buddy@db.wwdodoeohmbirvyiatba.supabase.co:5432/postgres'
+DB_URL = 'postgresql://postgres.wwdodoeohmbirvyiatba:retail2024buddy@aws-1-us-east-2.pooler.supabase.com:6543/postgres'
 
 def get_engine():
     return create_engine(DB_URL)
@@ -59,7 +58,7 @@ def data_pull():
 def load_data_page():
     if 'user' not in session:
         return redirect(url_for('login'))
-    msg = 'Data already loaded in Supabase cloud database!'
+    msg = 'Data loaded in Supabase cloud database!'
     return render_template('load_data.html', msg=msg)
 
 @app.route('/logout')
