@@ -75,5 +75,7 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    load_data()
+    import os
+    if os.path.exists('400_households.csv'):
+        load_data()
     app.run(debug=True)
