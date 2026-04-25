@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Pull</title>
+    <style>
+        body { font-family: Arial; margin: 0; background: #f0f2f5; }
+        .nav { background: #4f46e5; padding: 1rem 2rem; display: flex; gap: 2rem; }
+        .nav a { color: white; text-decoration: none; font-size: 14px; }
+        .nav .brand { font-weight: bold; font-size: 18px; }
+        .page { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+        input { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 8px 20px; background: #4f46e5; color: white; 
+                 border: none; border-radius: 5px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; background: white; 
+                border-radius: 10px; overflow: hidden; margin-top: 1rem; }
+        th { background: #4f46e5; color: white; padding: 10px; text-align: left; }
+        td { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; font-size: 13px; }
+        tr:hover td { background: #f8fafc; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <span class="brand">🛒 RetailIQ</span>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/data-pull">Data Pull</a>
+        <a href="/load-data">Load Data</a>
+        <a href="/logout" style="margin-left:auto;">Logout</a>
+    </div>
+    <div class="page">
+        <h1>🔍 Household Data Pull</h1>
+        <form method="POST" style="display:flex; gap:1rem; margin-bottom:1rem;">
+            <input type="number" name="hshd_num" 
+                   value="{{ hshd_num }}" placeholder="Enter HSHD_NUM">
+            <button type="submit">Search</button>
+        </form>
+        <p>Showing <strong>{{ rows|length }}</strong> records for 
+           Household <strong>#{{ hshd_num }}</strong></p>
+        <table>
+            <thead>
+                <tr>
+                    <th>HSHD_NUM</th><th>BASKET_NUM</th><th>DATE</th>
+                    <th>PRODUCT_NUM</th><th>DEPARTMENT</th><th>COMMODITY</th>
+                    <th>SPEND</th><th>UNITS</th><th>STORE_R</th>
+                    <th>WEEK_NUM</th><th>YEAR</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in rows %}
+                <tr>
+                    <td>{{ r[0] }}</td><td>{{ r[1] }}</td><td>{{ r[2] }}</td>
+                    <td>{{ r[3] }}</td><td>{{ r[4] }}</td><td>{{ r[5] }}</td>
+                    <td>${{ "%.2f"|format(r[6]|float) }}</td><td>{{ r[7] }}</td>
+                    <td>{{ r[8] }}</td><td>{{ r[9] }}</td><td>{{ r[10] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

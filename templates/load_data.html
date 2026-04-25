@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Load Data</title>
+    <style>
+        body { font-family: Arial; margin: 0; background: #f0f2f5; }
+        .nav { background: #4f46e5; padding: 1rem 2rem; display: flex; gap: 2rem; }
+        .nav a { color: white; text-decoration: none; font-size: 14px; }
+        .nav .brand { font-weight: bold; font-size: 18px; }
+        .page { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+        .card { background: white; padding: 2rem; border-radius: 10px; 
+                box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+        button { padding: 12px 30px; background: #4f46e5; color: white; 
+                 border: none; border-radius: 5px; cursor: pointer; 
+                 font-size: 16px; margin-top: 1rem; }
+        .success { background: #d1fae5; color: #065f46; padding: 1rem; 
+                   border-radius: 5px; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <span class="brand">🛒 RetailIQ</span>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/data-pull">Data Pull</a>
+        <a href="/load-data">Load Data</a>
+        <a href="/logout" style="margin-left:auto;">Logout</a>
+    </div>
+    <div class="page">
+        <h1>⚙️ Load Data</h1>
+        <div class="card">
+            {% if msg %}
+            <div class="success">✅ {{ msg }}</div>
+            {% endif %}
+            <h3>Load All Datasets</h3>
+            <p>Click the button to load Households, Transactions, 
+               and Products into the database.</p>
+            <p><strong>Tables:</strong> households (400 rows), 
+               transactions (922,008 rows), products (67,284 rows)</p>
+            <form method="POST">
+                <button type="submit">🔄 Load All Data</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
