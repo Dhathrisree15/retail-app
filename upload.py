@@ -1,14 +1,14 @@
 import pandas as pd
 from sqlalchemy import create_engine
 
-DB_URL = 'postgresql://postgres:retail2024!buddy@db.wwdodoeohmbirvyiatba.supabase.co:5432/postgres'
+DB_URL = 'postgresql://postgres:retail2024buddy@db.wwdodoeohmbirvyiatba.supabase.co:5432/postgres'
 engine = create_engine(DB_URL)
 
 print('Loading households...')
 hh = pd.read_csv('400_households.csv')
 hh.columns = hh.columns.str.strip()
 hh.to_sql('households', engine, if_exists='replace', index=False)
-print('Done! 400 rows')
+print('Done!')
 
 print('Loading products...')
 pr = pd.read_csv('400_products.csv')
