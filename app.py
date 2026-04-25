@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, text
 app = Flask(__name__)
 app.secret_key = 'retail2024'
 
-DB_URL = 'postgresql://postgres.wwdodoeohmbirvyiatba:retail2024buddy@aws-1-us-east-2.pooler.supabase.com:6543/postgres'
+DB_URL = 'mssql+pyodbc://sqladmin:Starwars%402032@monukode-sqlsrv.database.windows.net/monukode-db?driver=ODBC+Driver+18+for+SQL+Server'
 
 def get_engine():
     return create_engine(DB_URL)
